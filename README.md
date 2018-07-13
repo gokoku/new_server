@@ -34,7 +34,7 @@ Vagrantfile の hostname を書き換える。
 ```
 # Vagrantfile
 
-config.vm.hostname = "example.com"
+config.vm.hostname = "some_hostname"
 ```
 
 ```
@@ -42,7 +42,7 @@ $ cd old_centos_server
 $ vagrant up
 ```
 
-http://192.168.33.10 にブラウザアクセス。
+http://some_hostname にブラウザアクセス。
 
 
 #### Packer でビルドし直したときの登録
