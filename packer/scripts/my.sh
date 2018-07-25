@@ -3,6 +3,8 @@ yum -y install epel-release
 yum -y install unzip
 yum -y install http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 yum -y install --enablerepo=remi,remi-php71 php php-devel php-mbstring php-intl php-mysql php-xml php-pear php-pdo php-gd php-mcypt php-common
+# timezone setting
+sed -i -e "s/^;date.timezone.*$/date.timezone = 'Asia\/Tokyo'/g" /etc/php.ini
 
 
 echo ">>> apache install"
