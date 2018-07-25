@@ -16,6 +16,10 @@ then
     echo ">>> Word Press のデータベースを作ります $db_name"
     MYSQL_PWD=$password mysql -uroot -e "create database $db_name;"
 
+    echo ">>> MySQL のパスワード制限を緩めます"
+    MYSQL_PWD=$password mysql -uroot -e "SET GLOBAL validate_password_length=4;flush privileges;"
+    MYSQL_PWD=$password mysql -uroot -e "SET GLOBAL validate_password_policy=LOW;flush privileges;"
+    sleep 1
     echo ">>> Word Press のユーザをデータベースに作ります $db_user : $db_passwd"
     MYSQL_PWD=$password mysql -uroot -e "grant all privileges on $db_name.* to $db_user@localhost identified by $db_passwd;"
 

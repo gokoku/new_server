@@ -13,14 +13,16 @@ systemctl enable httpd
 systemctl start httpd
 
 echo ">>> mysql install"
-yum -y remove mariadb-libs
-rm -rf /var/lib/mysql
+yum -y install wget
+yum -y remove mariadb*
+rm -fr /var/lib/mysql/*.*
+rm -fr /var/lib/mysql
 
-yum -y localinstall http://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpm
-yum -y install mysql mysql-server mysql-devel
+wget -O /tmp/mysql57 http://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpm
+rpm -Uvh /tmp/mysql57
+yum -y install mysql mysql-community-server mysql-devel
 
-# 既存ユーザのパスワードが使えるようにする
-echo "validate-password=OFF" >> /etc/my.cnf
+echo "explicit_defaults_for_timestamp=1" >> /etc/my.cnf
 
 systemctl enable mysqld
 systemctl start mysqld
